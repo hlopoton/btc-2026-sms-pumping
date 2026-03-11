@@ -1,4 +1,8 @@
 Resource Hijacking: SMS Pumping | https://attack.mitre.org/techniques/T1496/003/
 What is SMS Pumping Fraud? | https://www.twilio.com/docs/glossary/what-is-sms-pumping-fraud
 SMS Pumping: How Criminals Turn Your Messaging Service into Their Cash Machine | https://www.group-ib.com/blog/sms-pumping/
+Protecting Against The $6.7Bn SMS Pumping Fraud Scam | https://www.cybersecurityintelligence.com/blog/protecting-against-the-67bn-sms-pumping-fraud-scam-7128.html
+What is SMS Pumping and How Does It Work in 2025 | https://www.geetest.com/en/article/sms-pumping-how-it-works-prevention-risks-2025
+A Complete Guide to SMS Pumping Fraud | https://www.peakhour.io/blog/sms-pumping-fraud-business-impact-protection/
+
 Message Segment Calculator | https://twiliodeved.github.io/message-segment-calculator/
