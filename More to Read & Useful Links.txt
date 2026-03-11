@@ -1,0 +1,3 @@
+Resource Hijacking: SMS Pumping | https://attack.mitre.org/techniques/T1496/003/
+What is SMS Pumping Fraud? | https://www.twilio.com/docs/glossary/what-is-sms-pumping-fraud
+SMS Pumping: How Criminals Turn Your Messaging Service into Their Cash Machine | https://www.group-ib.com/blog/sms-pumping/
