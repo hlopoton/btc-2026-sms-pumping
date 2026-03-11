@@ -1,0 +1,90 @@
+# SMS Pumping – Investigation Tables
+
+## Basic Triage Table (Usually Enough to Initiate Response)
+
+|------------------------|------------------------|------------------|
+| Parameter              | Value                  | Notes / Evidence |
+|------------------------|------------------------|------------------|
+| Target Country         |                        |                  |
+| Country Code           |                        |                  |
+| Agent Fingerprint      |                        |                  |
+| Device Fingerprint     |                        |                  |
+| Hostname               |                        |                  |
+| URL / Action           |                        |                  |
+| Method                 |                        | POST / GET / PUT |
+| IP, Subnet             |                        |                  |
+| ASN                    |                        |                  |
+|------------------------|------------------------|------------------|
+
+## Advanced / Calculation Table
+
+|-------------------------------|------|-----------------|-------------------------------------------------|
+| Parameter                     | Abbr | Value           | Notes                                           |
+|-------------------------------|------|-----------------|-------------------------------------------------|
+| Start of the Attack           | SOA  |                 | UTC                                             |
+| End of the Attack             | EOA  |                 | UTC                                             |
+| SMS Service Provider          | SSP  |                 | name                                            |
+| Number of SMS Sent            | NS   |                 | billed count                                    |
+| Number of SMS Delivered       | ND   |                 | if possible to find                             |
+| OTP Entered                   | OE   |                 | if applicable                                   |
+| Captcha Blocks                | CB   |                 |                                                 |
+| WAF Blocks                    | WB   |                 |                                                 |
+| Product Blocks                | PB   |                 |                                                 |
+| SSP Blocks                    | SSPB |                 |                                                 |
+| Total Blocks                  | TOTB |                 |                                                 |
+| Notification Type             |      |                 |                                                 |
+| Delivery Rate (%)             | DR   |                 | low DR indicates pumping                        |
+| OTP Submission Rate (%)       | OSR  |                 | low OSR indicates pumping                       |
+| Emails Used                   |      |                 | domains, regexp                                 |
+| SMS Segments                  | SG   |                 | message template > segment calculator           |
+| Segment Cost ($)              | SEGC |                 | SSP price in the Target Country                 |
+| SMS Cost ($)                  | SMSC |                 |                                                 |
+| Total Cost of Attack ($)      | TCA  |                 |                                                 |
+| Attack Power                  | AP   |                 | messages / time                                 |
+| Prevented Loss ($)            | PL   |                 |                                                 |
+| Block Efficiency              | BE   |                 |                                                 |
+| Defense Efficiency Ratio      | DER  |                 | protective measures efficiency                  |
+| Attack Efficiency Ratio       | AER  |                 | attack efficiency, opposite of DER              |
+|-------------------------------|------|-----------------|-------------------------------------------------|
+
+## Calculations
+
+Total Blocks (TOTB)
+TOTB = CB + WB + PB + SSPB
+
+Delivery Rate (DR)
+DR = (ND / NS) * 100%
+
+OTP Submission Rate (OSR)
+OSR = (OE / NS) * 100% 
+
+SMS Cost (SMSC)
+SMSC = SEGC * SG
+
+Total Cost of the Attack (TCA)
+TCA = SMSC * NS
+
+Attack Power (AP)
+AP = NS / (EOA - SOA)
+
+Prevented Loss (PL)
+PL = TOTB * SMSC
+
+Block Efficiency (BE)
+BE = TOTB / (TOTB + NS)
+
+Defense Efficiency Ratio (DER)
+DER = PL / TCA
+Interpretations:
+< 1	defenses weak, attacker caused more damage than prevented
+= 1	equal prevented vs realized loss
+> 1	defenses prevented more damage than what actually happened
+>> 1	strong mitigation
+
+Attack Efficiency Ratio (AER)
+AER = TCA / PL 
+(AER = 1 / DER)
+Interpretations:
+>1	attack relatively successful
+≈1	balanced
+<1	defenses strong
